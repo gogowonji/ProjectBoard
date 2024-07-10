@@ -1,0 +1,6 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectboard.mapper.MemberMapper">
+    <select id="findById" parameterType="String" resultType="com.toyproject.miniboard.domain.Member">
+        SELECT * FROM member WHERE memberNo = #{memberNo}
+    </select>
+</mapper>
