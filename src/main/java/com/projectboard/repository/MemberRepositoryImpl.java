@@ -21,7 +21,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findById(int memberNo) {
-        return Optional.ofNullable(memberMapper.findById(memberNo));
+    public Optional<Member> findById(String id) {
+        return Optional.ofNullable(memberMapper.findById(id));
     }
 }

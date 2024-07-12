@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
-    @Select("SELECT * FROM member WHERE memberNo = #{memberNo}")
-    Member findById(int memberNo);
+    @Select("SELECT * FROM member WHERE id = #{id}")
+    Member findById(String id);
 }

@@ -4,5 +4,5 @@ import com.projectboard.domain.Member;
 import java.util.Optional;
 
 public interface MemberRepository {
-    Optional<Member> findById(int MemberNo);
+    Optional<Member> findById(String id);
 }

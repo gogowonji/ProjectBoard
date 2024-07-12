@@ -19,15 +19,17 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/members/{memberId}")
-    public String getMemberId(@PathVariable int memberId, Model model) {
-        Optional<MemberDto> member = memberService.findById(memberId);
+    @GetMapping("/members/{id}/{password}")
+    public String getMemberId(@PathVariable String id, String password, Model model) {
+
+        Optional<MemberDto> member = memberService.login(id, password);
+
         if (member.isPresent()) {
             model.addAttribute("member", member.get());
         } else {
             model.addAttribute("error", "Member not found");
         }
-        return "memberDetail";
+        return "memberLogin";
 
     }
 

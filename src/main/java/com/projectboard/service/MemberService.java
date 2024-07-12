@@ -17,18 +17,19 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Optional<MemberDto> findById(int memberNo) {
-        Optional<Member> memberRepo = memberRepository.findById(memberNo);
+    public Optional<MemberDto> login(String id, String password) {
+        Optional<Member> memberRepo = memberRepository.findById(id);
         if (memberRepo.isPresent()) {
             Member member = memberRepo.get();
-            MemberDto memberDto = new MemberDto();
-            memberDto.setId(member.getId());
-            memberDto.setName(member.getName());
-            memberDto.setEmail(member.getEmail());
-            memberDto.setPhone(member.getPhone());
-            return Optional.of(memberDto);
-
-
+            if (member.getPassword().equals(password)) {
+                MemberDto memberDto = MemberDto.builder()
+                        .id(member.getId())
+                        .name(member.getName())
+                        .email(member.getEmail())
+                        .phone(member.getPhone())
+                        .build();
+                return Optional.of(memberDto);
+            }
         }
         return Optional.empty();
     }
