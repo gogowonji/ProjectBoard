@@ -38,7 +38,7 @@ public class MemberController {
         Optional<MemberDto> member = memberService.login(id, password);
         if (member.isPresent()) {
             model.addAttribute("member", member.get());
-            return "basic/board";
+            return "redirect:/board";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "index";

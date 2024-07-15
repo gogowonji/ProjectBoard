@@ -1,17 +1,15 @@
-package com.projectboard.domain;
+package com.projectboard.dto;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Slf4j
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Board {
+@Setter
+@Builder
+public class BoardDto {
     private int boardNo;
     private String title;
     private String content;
@@ -19,3 +17,4 @@ public class Board {
     private Date createdDate;
     private Date updatedDate;
 }
+

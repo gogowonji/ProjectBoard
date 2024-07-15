@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.toyproject.miniboard.repository.BoardRepository">
+
+    <select id="findAll" resultType="com.toyproject.miniboard.domain.Board">
+        SELECT *
+        FROM board
+    </select>
+
+    <select id="findById" parameterType="long" resultType="com.toyproject.miniboard.domain.Board">
+        SELECT boardNo, title, content, authorId, createdDate, updatedDate
+        FROM board
+        WHERE boardNo = #{boardNo}
+    </select>
+
+    <insert id="save" parameterType="com.toyproject.miniboard.domain.Board">
+        INSERT INTO board (title, content, authorId, createdDate, updatedDate)
+        VALUES (#{title}, #{content}, #{authorId}, #{createdDate}, #{updatedDate})
+    </insert>
+
+    <update id="update" parameterType="com.toyproject.miniboard.domain.Board">
+        UPDATE board
+        SET title = #{title}, content = #{content}, updatedDate = CURRENT_TIMESTAMP
+        WHERE boardNo = #{boardNo}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM board
+        WHERE boardNo = #{boardNo}
+    </delete>
+
+</mapper>

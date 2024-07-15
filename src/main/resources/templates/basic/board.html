@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <title>게시글 목록</title>
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .btn-primary {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome</h1>
+<div class="container">
+    <h1 class="text-center">게시글 목록</h1>
+    <div class="text-right">
+        <a class="btn btn-primary" th:href="@{/board/new}">글 작성하기</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.boardNo}">1</td>
+            <td>
+                <a th:href="@{/board/{boardNo}(boardNo=${board.boardNo})}" th:text="${board.title}">게시글 제목</a>
+            </td>
+            <td th:text="${board.authorId}">작성자</td>
+            <td th:text="${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}">2024-07-10</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
