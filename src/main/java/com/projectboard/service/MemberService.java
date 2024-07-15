@@ -3,11 +3,15 @@ package com.projectboard.service;
 import com.projectboard.domain.Member;
 import com.projectboard.dto.MemberDto;
 import com.projectboard.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;

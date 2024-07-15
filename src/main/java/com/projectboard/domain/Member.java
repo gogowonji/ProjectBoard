@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Member {
     private int memberNo;
     private String id;

@@ -1,7 +1,5 @@
 package com.projectboard.repository;
 
-
-
 import com.projectboard.domain.Member;
 import com.projectboard.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +22,6 @@ public class MemberRepositoryImpl implements MemberRepository {
     public Optional<Member> findById(String id) {
         return Optional.ofNullable(memberMapper.findById(id));
     }
+
+
 }
