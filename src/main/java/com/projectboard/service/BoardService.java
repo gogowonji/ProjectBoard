@@ -35,4 +35,18 @@ public class BoardService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+
+
+    public BoardDto findBoardById(int boardNo) {
+        Board board = boardRepository.findById(boardNo);
+        return BoardDto.builder()
+                .boardNo(board.getBoardNo())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .authorId(board.getAuthorId())
+                .createdDate(board.getCreatedDate())
+                .updatedDate(board.getUpdatedDate())
+                .build();
+    }
 }

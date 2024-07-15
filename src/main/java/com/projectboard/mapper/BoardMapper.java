@@ -13,6 +13,7 @@ public interface BoardMapper {
     @Select("SELECT * FROM board")
     List<Board> findAll();
 
+    @Select("SELECT boardNo, title, content, authorId, createdDate, updatedDate FROM board WHERE boardNo = #{boardNo}")
     Board findById(@Param("boardNo") int boardNo);
 
     void save(Board board);

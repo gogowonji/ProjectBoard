@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <title>게시글 상세보기</title>
+</head>
+<body>
+<div class="container">
+  <h1>게시글 상세보기</h1>
+  <div>
+    <label>제목:</label>
+    <span th:text="${board.title}"></span>
+  </div>
+  <div>
+    <label>내용:</label>
+    <p th:text="${board.content}"></p>
+  </div>
+  <div>
+    <label>작성자:</label>
+    <span th:text="${board.authorId}"></span>
+  </div>
+  <div>
+    <label>작성일:</label>
+    <span th:text="${board.createdDate}"></span>
+  </div>
+  <div>
+    <label>수정일:</label>
+    <span th:text="${board.updatedDate}"></span>
+  </div>
+  <br>
+  <div>
+    <a class="btn btn-secondary" th:href="@{/board}">목록으로</a>
+<!--    <button class="btn btn-primary" th:if="${#authentication.name == board.authorId}" th:onclick="|location.href='@{/board/edit/{boardNo}(boardNo=${board.boardNo})}'|">수정</button>-->
+<!--    <button class="btn btn-danger" th:if="${#authentication.name == board.authorId}" th:onclick="deleteBoard()">삭제</button>-->
+  </div>
+</div>
+<script>
+  function deleteBoard() {
+    if(confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("DELETE", /*[[${board.boardNo}]]*/ "", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          alert("게시글이 삭제되었습니다.");
+          window.location.href = "/board";
+        } else if (xhr.readyState === 4) {
+          alert("삭제 실패: " + xhr.responseText);
+        }
+      };
+      xhr.send(null);
+    }
+  }
+</script>
+</body>
+</html>
